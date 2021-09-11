@@ -1,0 +1,8 @@
+DNS - domain name system
+ICANN - internet corporation for asigned names and numbers
+VPN - virtual private networks
+API - application programming interface
+(private,partner,public)
+REST - representational state transfer
+CRUD - create, read, update, delete
+post, get,put,delete
