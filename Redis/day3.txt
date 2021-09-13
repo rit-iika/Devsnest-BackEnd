@@ -52,3 +52,51 @@ HGET key field
 HGETALL key
 HDEL key field
 HEXISTS key field
+
+publisher-sends messages, subscribers-receive messages
+
+*PUBLISH channelname message
+*SUSBCRIBE channelname
+*UNSUBSCRIBE channelname
+*PSUBSCRIBE pattern 
+- PSUBSCRIBE d* // will subscribe all channels with name starting from d
+*PUNSUBSCRIBE pattern 
+- PUNSUBSCRIBE d* // will unsubscribe all channels with name starting from d
+*PUNSUBSCRIBE
+
+STREAM
+It lays pipelines through redis
+we can get all history in streams.
+
+commands...
+
+*XADD streamname id key value
+- XADD mystream 100 name ANNA
+>> "100-0"
+*XADD streamname id key value
+- XADD mystream 102 name KAT
+>> "102-0"
+*XADD streamname id key value
+- XADD mystream * name ASH //* will provide any random id as per the time stamp
+>> "10e728911-0"
+*XADD streamname id key value
+- XADD mystream * name HARRY 
+>> "107289872-0"
+*XREAD COUNT 200 STREAMS mystream 0 //show all data above id=0, or from starting of database
+>> whole database till now
+>>1) 1)mystream
+     2) 1) 1) "100-0"
+           2) 1) "name"
+              2) "ANNA"
+        2) 1) "102-0"
+           2) 1) "name"
+              2) "KAT"
+        3) 1) "10e728911-0"
+           2) 1) "name"
+              2) "ASH"
+     
+
+
+
+
+
